@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title><%= title %> | StudentTrack</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body>
+
+    <h1>StudentTrack</h1>
+
+    <h2>My Assignments</h2>
+
+    <p>Manage your academic responsibilities.</p>
+
+    <a href="/assignments/add">Add Assignment</a>
+
+    <% assignments.forEach(function(assignment) { %>
+
+        <div class="assignment-card">
+
+            <h3><%= assignment.title %></h3>
+
+            <p>Course: <%= assignment.course %></p>
+
+            <p>Due Date: <%= assignment.dueDate %></p>
+
+            <p>Priority: <%= assignment.priority %></p>
+
+            <p>Status: <%= assignment.status %></p>
+
+            <p><%= assignment.description %></p>
+
+        </div>
+
+    <% }); %>
+
+</body>
+</html>
