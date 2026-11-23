@@ -19,4 +19,41 @@ router.get('/', async (req, res, next) => {
     }
 });
 
+
+// Display the add assignment form
+router.get('/add', async (req, res, next) => {
+    try {
+        res.render('assignments/add', {
+            title: 'Add Assignment'
+        });
+    }
+    catch (error) {
+        return next(error);
+    }
+});
+
+// Save a new assignment
+router.post('/add', async (req, res, next) => {
+    try {
+
+        let newAssignment = new Assignment({
+            title: req.body.title,
+            course: req.body.course,
+            dueDate: req.body.dueDate,
+            priority: req.body.priority,
+            status: req.body.status,
+            description: req.body.description
+        });
+
+        await newAssignment.save();
+
+        res.redirect('/assignments');
+
+    }
+    catch (error) {
+        return next(error);
+    }
+});
+
+
 module.exports = router;
