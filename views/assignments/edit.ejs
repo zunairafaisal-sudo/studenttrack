@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <title><%= title %> | StudentTrack</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body>
+
+    <h1>StudentTrack</h1>
+
+    <h2>Edit Assignment</h2>
+
+    <form method="POST" action="/assignments/edit/<%= assignment._id %>">
+
+        <label>Assignment Title</label>
+        <input type="text" name="title"
+               value="<%= assignment.title %>" required>
+
+        <label>Course Name</label>
+        <input type="text" name="course"
+               value="<%= assignment.course %>" required>
+
+        <label>Due Date</label>
+        <input type="date" name="dueDate"
+               value="<%= assignment.dueDate %>" required>
+
+        <label>Priority</label>
+        <select name="priority">
+            <option value="Low" <%= assignment.priority === 'Low' ? 'selected' : '' %>>Low</option>
+            <option value="Medium" <%= assignment.priority === 'Medium' ? 'selected' : '' %>>Medium</option>
+            <option value="High" <%= assignment.priority === 'High' ? 'selected' : '' %>>High</option>
+        </select>
+
+        <label>Status</label>
+        <select name="status">
+            <option value="Not Started" <%= assignment.status === 'Not Started' ? 'selected' : '' %>>Not Started</option>
+            <option value="In Progress" <%= assignment.status === 'In Progress' ? 'selected' : '' %>>In Progress</option>
+            <option value="Completed" <%= assignment.status === 'Completed' ? 'selected' : '' %>>Completed</option>
+        </select>
+
+        <label>Description</label>
+        <textarea name="description"><%= assignment.description %></textarea>
+
+        <button type="submit">Update Assignment</button>
+
+    </form>
+
+    <a href="/assignments">Back to Assignments</a>
+
+</body>
+</html>
