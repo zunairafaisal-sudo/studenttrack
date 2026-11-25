@@ -5,8 +5,10 @@ let mongoose = require('mongoose');
 
 let Assignment = require('../models/Assignment');
 
+
 router.get('/', async (req, res, next) => {
     try {
+
         let assignments = await Assignment.find();
 
         res.render('assignments/index', {
@@ -14,25 +16,21 @@ router.get('/', async (req, res, next) => {
             assignments: assignments
         });
 
-    } catch (error) {
-        return next(error);
-    }
-});
-
-
-// Display the add assignment form
-router.get('/add', async (req, res, next) => {
-    try {
-        res.render('assignments/add', {
-            title: 'Add Assignment'
-        });
     }
     catch (error) {
         return next(error);
     }
 });
 
-// Save a new assignment
+
+router.get('/add', (req, res, next) => {
+
+    res.render('assignments/add', {
+        title: 'Add Assignment'
+    });
+
+});
+
 router.post('/add', async (req, res, next) => {
     try {
 
@@ -54,6 +52,5 @@ router.post('/add', async (req, res, next) => {
         return next(error);
     }
 });
-
 
 module.exports = router;
