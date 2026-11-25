@@ -4,14 +4,16 @@ let router = express.Router();
 
 let Assignment = require('../models/Assignment');
 
-
 router.get('/', async (req, res, next) => {
     try {
         let assignments = await Assignment.find();
 
+        let totalAssignments = assignments.length;
+
         res.render('assignments/index', {
             title: 'My Assignments',
-            assignments: assignments
+            assignments: assignments,
+            totalAssignments: totalAssignments
         });
     }
     catch (error) {
