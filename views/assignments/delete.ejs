@@ -1,0 +1,18 @@
+<main class="container">
+    <h1><%= title %></h1>
+
+    <h2>Are you sure you want to delete this assignment?</h2>
+
+    <div class="assignment-card">
+        <h3><%= assignment.title %></h3>
+
+        <p>Course: <%= assignment.course %></p>
+        <p>Priority: <%= assignment.priority %></p>
+        <p>Status: <%= assignment.status %></p>
+    </div>
+
+    <form method="post" action="/assignments/delete/<%= assignment._id %>">
+        <button type="submit">Yes, Delete Assignment</button>
+        <a href="/assignments">No, Go Back</a>
+    </form>
+</main>
