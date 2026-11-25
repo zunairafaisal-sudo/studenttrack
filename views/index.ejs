@@ -1,11 +1,108 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
-</html>
+<%- include('./partials/header.ejs') %>
+<%- include('./partials/main_nav.ejs') %>
+
+<main class="container mt-5">
+
+    <div class="row mb-5">
+        <div class="col-md-8">
+            <h1>Welcome to StudentTrack!</h1>
+
+            <h4>Stay organized. Meet your deadlines. Achieve your goals.</h4>
+
+            <p>
+                StudentTrack is your personal assignment management
+                platform. Keep track of your coursework, monitor
+                upcoming deadlines, and stay on top of your studies
+                all in one place.
+            </p>
+
+            <a href="/assignments" class="btn btn-primary">
+                View My Assignments
+            </a>
+
+            <a href="/assignments/add" class="btn btn-success">
+                Add Assignment
+            </a>
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>Your Assignment Overview</h2>
+
+    <div class="row mt-4">
+
+        <div class="col-md-4">
+            <div class="card p-3 text-center">
+                <h5>Total Assignments</h5>
+                <h2><%= totalAssignments %></h2>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card p-3 text-center">
+                <h5>In Progress</h5>
+                <h2><%= inProgress %></h2>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card p-3 text-center">
+                <h5>Completed</h5>
+                <h2><%= completed %></h2>
+            </div>
+        </div>
+
+    </div>
+
+    <hr>
+
+    <h2>Recent Assignments</h2>
+
+    <% if (assignments.length > 0) { %>
+
+        <table class="table table-bordered table-striped mt-3">
+
+            <tr>
+                <th>Assignment</th>
+                <th>Course</th>
+                <th>Due Date</th>
+                <th>Status</th>
+            </tr>
+
+            <% for (let count = 0; count < assignments.length; count++) { %>
+
+                <tr>
+                    <td><%= assignments[count].title %></td>
+                    <td><%= assignments[count].course %></td>
+                    <td><%= assignments[count].dueDate %></td>
+                    <td><%= assignments[count].status %></td>
+                </tr>
+
+            <% } %>
+
+        </table>
+
+    <% } else { %>
+
+        <p>You haven't added any assignments yet.</p>
+
+    <% } %>
+
+    <hr>
+
+    <div class="text-center mt-5 mb-5">
+
+        <h2>Ready to Get Organized?</h2>
+
+        <p>Start managing your academic responsibilities today.</p>
+
+        <a href="/assignments" class="btn btn-primary">
+            Get Started
+        </a>
+
+    </div>
+
+</main>
+
+<%- include('./partials/footer.ejs') %>
